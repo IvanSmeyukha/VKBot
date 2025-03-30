@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ControllerExceptionHandler {
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleNoSuchElementException(Exception exception) {
-        log.error("{}: {}", exception.getClass().getName(), exception.getMessage());
+    public ResponseEntity<String> handle(Exception exception) {
+        log.error(exception.getMessage(), exception);
         return ResponseEntity.ok(exception.getMessage());
     }
 
