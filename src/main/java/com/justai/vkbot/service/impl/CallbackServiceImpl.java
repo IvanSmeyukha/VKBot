@@ -20,7 +20,8 @@ public class CallbackServiceImpl implements CallbackService {
     private String secret;
 
     @Override
-    public String handleCallback(CallbackDto request) {        validateSecret(request.getSecret());
+    public String handleCallback(CallbackDto request) {
+        validateSecret(request.getSecret());
         VKEventHandler handler = handlerFactory.getHandler(request.getType());
         if (handler == null) {
             throw new UnsupportedOperationException("unsupported_event_type");
