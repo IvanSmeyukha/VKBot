@@ -1,0 +1,21 @@
+services:
+  ngrok:
+    image: ngrok/ngrok:latest
+    ports:
+      - "4040:4040"
+    command: http vk-bot:8080
+    environment:
+      - NGROK_AUTHTOKEN=2uzqJZAbv5fVOrrKN9dS6bOJAi3_oTbN5ngHAjpH4N7vBBZM
+  vk-bot:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SERVER_PORT=8080
+    depends_on:
+      - ngrok
+    volumes:
+      - ./logs:/app/logs
+
+volumes:
+  logs_volume:
