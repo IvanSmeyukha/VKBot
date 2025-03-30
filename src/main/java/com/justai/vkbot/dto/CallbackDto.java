@@ -2,9 +2,11 @@ package com.justai.vkbot.dto;
 
 import com.fasterxml.jackson.annotation.*;
 import com.justai.vkbot.enums.VKEventType;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CallbackDto {
     @JsonProperty("type")

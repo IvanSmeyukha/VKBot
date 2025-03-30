@@ -21,6 +21,7 @@ public class CallbackServiceImpl implements CallbackService {
 
     @Override
     public String handleCallback(CallbackDto request) {
+        log.debug("Request type: {}", request.getType());
         validateSecret(request.getSecret());
         VKEventHandler handler = handlerFactory.getHandler(request.getType());
         if (handler == null) {
@@ -30,7 +31,7 @@ public class CallbackServiceImpl implements CallbackService {
     }
 
     private void validateSecret(String requestSecret) {
-        if (secret.equals(requestSecret)) {
+        if (!secret.equals(requestSecret)) {
             throw new InvalidParameterException("invalid_secret");
         }
     }
